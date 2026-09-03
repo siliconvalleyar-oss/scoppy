@@ -1,0 +1,13 @@
+# Todo lo que NO se sube al repo "scoppy"
+# Solo se publica la documentación de flutter_docs/ (md + imágenes)
+
+# Análisis APK (código propietario / APK original) - NO publicar
+flutter_docs/apk_analysis/
+
+# Otros directorios del workspace que no forman parte de la doc
+tmp/
+scoppy_of_git/
+pico_docs/
+firnware_scoppy_for_pico/
+capturar_pico.sh
+install_tools_roj.sh
