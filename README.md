@@ -1,25 +1,62 @@
-# Scoppy — Documentación
+# Scoppy — Firmware C++ y Documentación
 
-Repositorio de documentación sobre **Scoppy**, el osciloscopio/analizador lógico
+Repositorio de documentación y firmware para **Scoppy**, el osciloscopio/analizador lógico
 que convierte una Raspberry Pi **Pico (W / 2 / 2 W)** en un osciloscopio controlado
 por una app Android.
 
-Este repositorio contiene la documentación de ingeniería inversa generada en
-`flutter_docs/`, con el objetivo de **replicar** la aplicación.
+## Estructura
 
-## Rama `flutter_for_pico`
+| Ruta | Contenido |
+|---|---|
+| `src/` | Código fuente C++ del firmware |
+| `include/` | Headers públicos del firmware |
+| `docs/` | Documentación técnica y TODO del proyecto |
+| `pico_firmware_docs/` | Documentación generada por ingeniería inversa |
+| `README.md` | Este archivo |
 
-La documentación está alojada en la rama **[`flutter_for_pico`](../../tree/flutter_for_pico)**,
-bajo `flutter_docs/docs/`:
+## Firmware C++
+
+El firmware se implementa en C++17 sobre el **RP2040 SDK** con **TinyUSB** y **lwIP**.
+
+### Módulos
+
+| Módulo | Archivo | Función |
+|--------|---------|---------|
+| USB | `src/usb_descriptors.cpp`, `src/usb_handler.cpp` | Descriptores CDC-ACM, vendor requests, streaming |
+| ADC/DMA | `src/adc_dma.cpp` | Sampling, buffer circular, trigger |
+| WiFi | `src/wifi.cpp` | CYW43, modo AP/STA, DHCP |
+| mDNS | `src/mdns.cpp` | Descubrimiento de dispositivos |
+| TCP Server | `src/tcp_server.cpp` | Servicio discovery en puerto 22483 |
+| Main | `src/main.cpp` | Punto de entrada y loop principal |
+
+### Build
+
+```bash
+# Configurar proyecto
+mkdir build && cd build
+cmake ..
+
+# Compilar
+make -j4
+
+# Generar UF2
+make scoppy_firmware.uf2
+```
+
+## Documentación
+
+La documentación oficial de referencia está en `pico_firmware_docs/` y proviene del
+análisis de ingeniería inversa del firmware original.
+
+### Archivos clave
 
 | Archivo | Contenido |
 |---|---|
-| `PROTOCOLO_SCOPPY.md` | Protocolo binario App↔Pico verificado por RE (opcodes 60–63/80–92, framing 0xFF, puertos 22483/22484) |
-| `REFERENCIA_HARDWARE_PICO.md` | Pinout GPIO, sample rates ADC/overclock, voltage ranges, signal generator, firmwares v18/v19 |
-| `REFERENCIA_FUNCIONALIDAD.md` | Comportamiento de la app a replicar (trigger, timebase, medidas, FFT, math, XY, premium) |
-| `SKILL.md` | Resumen del skill de RE (transportes, trama, opcodes, verificación en vivo) |
-| `TODO.md` | Tareas pendientes de RE |
-| `*.png / *.webp / *.jpeg` | Esquemas e imágenes del Analog Front-End |
-
-> Nota: `flutter_docs/apk_analysis/` (APK y código descompilado de la app original)
-> **no** se publica en este repositorio.
+| `pico_firmware_docs/usb_protocol.md` | Protocolo USB CDC-ACM, descriptores, endpoints |
+| `pico_firmware_docs/usb_command_map.md` | Comandos USB, vendor requests, control transfers |
+| `pico_firmware_docs/wifi_behavior.md` | SSID, modos AP/STA, mDNS |
+| `pico_firmware_docs/communication_protocol.md` | Formato de comandos y muestras |
+| `pico_firmware_docs/trigger_adc_buffer.md` | Trigger, ADC, DMA, buffer model |
+| `pico_firmware_docs/live_device_probe.md` | Análisis del servicio 22483 en dispositivo real |
+| `pico_firmware_docs/official_reference.md` | Documentación oficial cruzada de GPIOs, versiones, sample rates |
+| `docs/TODO.md` | Tareas pendientes del proyecto C++ |
