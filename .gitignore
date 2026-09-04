@@ -1,0 +1,119 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+bin/
+tmp/
+tmp_*/
+
+# Pico SDK artifacts
+pico-sdk/
+vendor/
+lib/
+libs/
+
+# Compiled binaries
+*.uf2
+*.elf
+*.bin
+*.hex
+*.map
+*.lst
+*.sym
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+*.cmake
+!CMakeLists.txt
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.orig
+*.bak
+
+# System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Thumbs.db:Stream*
+desktop.ini
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# APK analysis artifacts
+apktool_out/
+apk_analysis/
+*.apk
+*.apks
+*.dex
+
+# Network captures and analysis
+pcap/
+captures/
+*.pcap
+*.pcapng
+tcpdump*
+wireshark*
+usbpcap*
+
+# Temporary analysis files
+/tmp/scoppy_*
+*.tmp
+*.log
+*.pid
+*.pid.lock
+
+# Documentation generated files (keep source .md)
+/docs/_site/
+/docs/_build/
+/site/
+
+# Package managers
+node_modules/
+vendor/
+
+# Backup files
+*.backup
+*.old
+*.orig
+
+# Secrets and credentials
+*.pem
+*.key
+*.p12
+*.pfx
+id_ed25519
+id_ed25519.pub
+id_rsa
+id_rsa.pub
+*.credentials
+*.token
+*.secret
