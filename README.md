@@ -10,7 +10,7 @@ Este repositorio contiene la documentación de ingeniería inversa generada en
 ## Rama `flutter_for_pico`
 
 La documentación está alojada en la rama **[`flutter_for_pico`](../../tree/flutter_for_pico)**,
-bajo `flutter_docs/docs/`:
+bajo `docs/`:
 
 | Archivo | Contenido |
 |---|---|
